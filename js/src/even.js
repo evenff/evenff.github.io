@@ -6,23 +6,22 @@
   }
 
   Even.prototype.setup = function() {
-    var leancloud = this.config.leancloud;
+    var theme = this.config;
+    var leancloud = theme.leancloud;
 
     this.navbar();
-    this.responsiveTable();
-
-    if (this.config.toc) {
+    if (theme.toc) {
       this.scrollToc();
       this.tocFollow();
     }
-    if (this.config.fancybox) {
+    if (theme.fancybox) {
       this.fancybox();
     }
     if (leancloud.app_id && leancloud.app_key) {
       this.recordReadings();
     }
-    if(this.config.latex) {
-      this.renderLaTeX();
+    if (theme.pjax) {
+      this.pjax();
     }
     this.backToTop();
   };
@@ -58,11 +57,6 @@
     });
   };
 
-  Even.prototype.responsiveTable = function () {
-    var tables = $('.post-content > table')
-    tables.wrap('<div class="table-responsive">')
-  };
-
   Even.prototype.scrollToc = function () {
     var SPACING = 20;
     var $toc = $('.post-toc');
@@ -70,36 +64,32 @@
 
     if ($toc.length) {
       var minScrollTop = $toc.offset().top - SPACING;
-      $(window).scroll(function () {
-        var tocState = {
-          start: {
-            'position': 'absolute',
-            'top': minScrollTop
-          },
-          process: {
-            'position': 'fixed',
-            'top': SPACING
-          }
+      var maxScrollTop = $footer.offset().top - $toc.height() - SPACING;
+
+      var tocState = {
+        start: {
+          'position': 'absolute',
+          'top': minScrollTop
+        },
+        process: {
+          'position': 'fixed',
+          'top': SPACING
+        },
+        end: {
+          'position': 'absolute',
+          'top': maxScrollTop
         }
+      }
+
+      $(window).scroll(function () {
         var scrollTop = $(window).scrollTop();
+
         if (scrollTop < minScrollTop) {
           $toc.css(tocState.start);
+        } else if (scrollTop > maxScrollTop) {
+          $toc.css(tocState.end);
         } else {
           $toc.css(tocState.process);
-          
-          if($(".post-toc").css("display") != "none"){
-            var maxTocTop = $footer.offset().top - $toc.height() - SPACING;
-            var tocCenterThreshold = document.documentElement.scrollTop + window.innerHeight / 2;
-            if ($(".toc-link.active").offset() != undefined && $(".toc-link.active").offset().top > tocCenterThreshold) {
-              var distanceBetween = $(".post-toc").offset().top - $(".toc-link.active").offset().top;
-              $(".post-toc").offset({
-                  top: Math.min(maxTocTop, tocCenterThreshold + distanceBetween),
-              });
-            }
-            if (maxTocTop < $(".post-toc").offset().top) {
-              $(".post-toc").offset({ top: maxTocTop });
-            }
-          }
         }
       })
     }
@@ -110,10 +100,11 @@
     var $toclink = $('.toc-link'),
       $headerlink = $('.headerlink');
 
+    var headerlinkTop = $.map($headerlink, function (link) {
+      return $(link).offset().top;
+    });
+
     $(window).scroll(function () {
-      var headerlinkTop = $.map($headerlink, function (link) {
-        return $(link).offset().top;
-      });
       var scrollTop = $(window).scrollTop();
 
       for (var i = 0; i < $toclink.length; i++) {
@@ -187,45 +178,53 @@
           newcounter.set('url', url);
           newcounter.set('time', 1);
 
-          var acl = new AV.ACL();
-          acl.setWriteAccess('*', true)
-          acl.setReadAccess('*', true)
-          newcounter.setACL(acl)
-
           newcounter.save().then(function () {
             updateVisits($visits, newcounter.get('time'));
           });
         }
       }, function (error) {
         // eslint-disable-next-line
-        console.log('Error:' + error.code + ' ' + error.message);
+        console.log('Error:' + error.code + " " + error.message);
       });
     }
 
     function showTime(Counter) {
-      let index = 0;
       $visits.each(function () {
         var $this = $(this);
-        setTimeout(
-          function() {
-            var query = new AV.Query(Counter);
-            var url = $this.data('url').trim();
-    
-            query.equalTo('url', url);
-            query.find().then(function (results) {
-              if (results.length === 0) {
-                updateVisits($this, 0);
-              } else {
-                var counter = results[0];
-                updateVisits($this, counter.get('time'));
-              }
-            }, function (error) {
-              // eslint-disable-next-line
-              console.log('Error:' + error.code + ' ' + error.message);
-            });
-          }, 100*(index++));     
+        var query = new AV.Query(Counter);
+        var url = $this.data('url').trim();
+
+        query.equalTo('url', url);
+        query.find().then(function (results) {
+          if (results.length === 0) {
+            updateVisits($this, 0);
+          } else {
+            var counter = results[0];
+            updateVisits($this, counter.get('time'));
+          }
+        }, function (error) {
+          // eslint-disable-next-line
+          console.log('Error:' + error.code + " " + error.message);
+        });
       })
     }
+  };
+
+  Even.prototype.pjax = function () {
+    if (location.hostname === 'localhost' || this.hasPjax) return;
+    this.hasPjax = true;
+
+    var that = this;
+    $(document).pjax('a', 'body', { fragment: 'body' });
+    $(document).on('pjax:send', function () {
+      NProgress.start();
+      $('body').addClass('hide-top');
+    });
+    $(document).on('pjax:complete', function () {
+      NProgress.done();
+      $('body').removeClass('hide-top');
+      that.setup();
+    });
   };
 
   Even.prototype.backToTop = function () {
@@ -243,17 +242,6 @@
       $('body,html').animate({ scrollTop: 0 });
     });
   };
-
-  Even.prototype.renderLaTeX = function () {
-    var loopID = setInterval(function () {
-      if(window.MathJax) {
-        var jax = window.MathJax;
-        jax.Hub.Config({ tex2jax: { inlineMath: [['$', '$'], ['\\(', '\\)']] }});
-        jax.Hub.Queue(['Typeset', jax.Hub, $(document.body)[0]]);
-        clearInterval(loopID);
-      }
-    }, 500);
-  }
 
   var config = window.config;
   var even = new Even(config);
