@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en_US">
   <head>
     
 <meta charset="UTF-8"/>
@@ -253,7 +253,7 @@
     
     
   <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
+    <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9B%B8%E5%85%B3%E5%9C%BA%E6%99%AF"><span class="toc-text">索引失效的相关相关场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="toc-text">2. 创建表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="toc-text">1.2 插入数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8D%E6%BB%A1%E8%B6%B3%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99"><span class="toc-text">2.不满足最左匹配原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E7%B4%A2%E5%BC%95%E6%9C%89%E6%95%88%EF%BC%9F"><span class="toc-text">2.1 哪些情况索引有效？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%EF%BC%9F"><span class="toc-text">2.2 哪些情况索引失效？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BD%BF%E7%94%A8%E4%BA%86select"><span class="toc-text">3. 使用了select *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%B4%A2%E5%BC%95%E5%88%97%E4%B8%8A%E6%9C%89%E8%AE%A1%E7%AE%97"><span class="toc-text">4. 索引列上有计算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%B4%A2%E5%BC%95%E5%88%97%E7%94%A8%E4%BA%86%E5%87%BD%E6%95%B0"><span class="toc-text">5. 索引列用了函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C"><span class="toc-text">6. 字段类型不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-like%E5%B7%A6%E8%BE%B9%E5%8C%85%E5%90%AB"><span class="toc-text">7. like左边包含%</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%88%97%E5%AF%B9%E6%AF%94"><span class="toc-text">8. 列对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E4%BD%BF%E7%94%A8or%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">9. 使用or关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-not-in%E5%92%8Cnot-exists"><span class="toc-text">10. not in和not exists</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-in%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">10.1 in关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-exists%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">10.2 exists关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-not-in%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">10.3 not in关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-not-exists%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">10.4 not exists关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-order-by%E7%9A%84%E5%9D%91"><span class="toc-text">11. order by的坑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="toc-text">11.1 哪些情况走索引？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1-1-%E6%BB%A1%E8%B6%B3%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99"><span class="toc-text">11.1.1 满足最左匹配原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1-2-%E9%85%8D%E5%90%88where%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8"><span class="toc-text">11.1.2 配合where一起使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1-3-%E7%9B%B8%E5%90%8C%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="toc-text">11.1.3 相同的排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1-4-%E4%B8%A4%E8%80%85%E9%83%BD%E6%9C%89"><span class="toc-text">11.1.4 两者都有</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8D%E8%B5%B0%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="toc-text">11.2 哪些情况不走索引？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#11-2-1-%E6%B2%A1%E5%8A%A0where%E6%88%96limit"><span class="toc-text">11.2.1 没加where或limit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-2-2-%E5%AF%B9%E4%B8%8D%E5%90%8C%E7%9A%84%E7%B4%A2%E5%BC%95%E5%81%9Aorder-by"><span class="toc-text">11.2.2 对不同的索引做order by</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-2-3-%E4%B8%8D%E6%BB%A1%E8%B6%B3%E6%9C%80%E5%B7%A6%E5%8C%B9%E9%85%8D%E5%8E%9F%E5%88%99"><span class="toc-text">11.2.3 不满足最左匹配原则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-2-4-%E4%B8%8D%E5%90%8C%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="toc-text">11.2.4 不同的排序</span></a></li></ol></li></ol></li></ol>
     </div>
@@ -269,14 +269,24 @@
 <h2 id="索引失效的相关相关场景"><a href="#索引失效的相关相关场景" class="headerlink" title="索引失效的相关相关场景"></a>索引失效的相关相关场景</h2><p>某个字段上加了索引，但实际并没有生效。</p>
 <p>索引有时候生效了，有时候没有生效。</p>
 <p>1.慢查询日志：记录所有执行时间超过long_query_time秒的所有查询或不适用于索引的查询。可通过</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like <span class="string">&#x27;%quer%&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">show variables like &#39;%quer%&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>查看。可通过</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log_queries_not_using_indexes</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">log_queries_not_using_indexes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>查看是否记录没有通过索引的SQL。</p>
 <p><img src="/.com//image-20220406140953844-16492253960391-16492254476952.png" alt="image-20220406140953844"></p>
-<h3 id="2-创建表"><a href="#2-创建表" class="headerlink" title="2. 创建表"></a>2. 创建表</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `user` (</span><br><span class="line">  `id` <span class="type">int</span> NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `code` varchar(<span class="number">20</span>) COLLATE utf8mb4_bin DEFAULT NULL,</span><br><span class="line">  `age` <span class="type">int</span> DEFAULT <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">  `name` varchar(<span class="number">30</span>) COLLATE utf8mb4_bin DEFAULT NULL,</span><br><span class="line">  `height` <span class="type">int</span> DEFAULT <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">  `address` varchar(<span class="number">30</span>) COLLATE utf8mb4_bin DEFAULT NULL,</span><br><span class="line">  PRIMARY <span class="title function_">KEY</span> <span class="params">(`id`)</span>,</span><br><span class="line">  KEY `idx_code_age_name` (`code`,`age`,`name`),</span><br><span class="line">  KEY `idx_height` (`height`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=<span class="number">4</span> DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin</span><br></pre></td></tr></table></figure>
+<h3 id="2-创建表"><a href="#2-创建表" class="headerlink" title="2. 创建表"></a>2. 创建表</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">CREATE TABLE `user` <span class="token punctuation">(</span>
+  `id` <span class="token keyword">int</span> NOT <span class="token class-name">NULL</span> AUTO_INCREMENT<span class="token punctuation">,</span>
+  `code` <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> COLLATE utf8mb4_bin <span class="token class-name">DEFAULT</span> NULL<span class="token punctuation">,</span>
+  `age` <span class="token keyword">int</span> DEFAULT <span class="token char">'0'</span><span class="token punctuation">,</span>
+  `name` <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> COLLATE utf8mb4_bin <span class="token class-name">DEFAULT</span> NULL<span class="token punctuation">,</span>
+  `height` <span class="token keyword">int</span> DEFAULT <span class="token char">'0'</span><span class="token punctuation">,</span>
+  `address` <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> COLLATE utf8mb4_bin <span class="token class-name">DEFAULT</span> NULL<span class="token punctuation">,</span>
+  <span class="token class-name">PRIMARY</span> KEY <span class="token punctuation">(</span>`id`<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  KEY `idx_code_age_name` <span class="token punctuation">(</span>`code`<span class="token punctuation">,</span>`age`<span class="token punctuation">,</span>`name`<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  KEY `idx_height` <span class="token punctuation">(</span>`height`<span class="token punctuation">)</span>
+<span class="token punctuation">)</span> ENGINE<span class="token operator">=</span><span class="token class-name">InnoDB</span> AUTO_INCREMENT<span class="token operator">=</span><span class="token number">4</span> <span class="token class-name">DEFAULT</span> CHARSET<span class="token operator">=</span>utf8mb4 COLLATE<span class="token operator">=</span>utf8mb4_bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>此外，还创建了三个索引：</p>
 <ul>
@@ -284,16 +294,18 @@
 <li><code>idx_code_age_name</code>：由code、age和name三个字段组成的联合索引。</li>
 <li><code>idx_height</code>：普通索引</li>
 </ul>
-<h3 id="1-2-插入数据"><a href="#1-2-插入数据" class="headerlink" title="1.2 插入数据"></a>1.2 插入数据</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO sue.user (id, code, age, name, height) VALUES (<span class="number">1</span>, <span class="string">&#x27;101&#x27;</span>, <span class="number">21</span>, <span class="string">&#x27;周星驰&#x27;</span>, <span class="number">175</span>,<span class="string">&#x27;香港&#x27;</span>);</span><br><span class="line">INSERT INTO sue.user (id, code, age, name, height) VALUES (<span class="number">2</span>, <span class="string">&#x27;102&#x27;</span>, <span class="number">18</span>, <span class="string">&#x27;周杰伦&#x27;</span>, <span class="number">173</span>,<span class="string">&#x27;台湾&#x27;</span>);</span><br><span class="line">INSERT INTO sue.user (id, code, age, name, height) VALUES (<span class="number">3</span>, <span class="string">&#x27;103&#x27;</span>, <span class="number">23</span>, <span class="string">&#x27;苏三&#x27;</span>, <span class="number">174</span>,<span class="string">&#x27;成都&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="1-2-插入数据"><a href="#1-2-插入数据" class="headerlink" title="1.2 插入数据"></a>1.2 插入数据</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">INSERT INTO sue<span class="token punctuation">.</span>user <span class="token punctuation">(</span>id<span class="token punctuation">,</span> code<span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">,</span> height<span class="token punctuation">)</span> VALUES <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token char">'101'</span><span class="token punctuation">,</span> <span class="token number">21</span><span class="token punctuation">,</span> <span class="token char">'周星驰'</span><span class="token punctuation">,</span> <span class="token number">175</span><span class="token punctuation">,</span><span class="token char">'香港'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+INSERT INTO sue<span class="token punctuation">.</span>user <span class="token punctuation">(</span>id<span class="token punctuation">,</span> code<span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">,</span> height<span class="token punctuation">)</span> VALUES <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token char">'102'</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">,</span> <span class="token char">'周杰伦'</span><span class="token punctuation">,</span> <span class="token number">173</span><span class="token punctuation">,</span><span class="token char">'台湾'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+INSERT INTO sue<span class="token punctuation">.</span>user <span class="token punctuation">(</span>id<span class="token punctuation">,</span> code<span class="token punctuation">,</span> age<span class="token punctuation">,</span> name<span class="token punctuation">,</span> height<span class="token punctuation">)</span> VALUES <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token char">'103'</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token char">'苏三'</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span><span class="token char">'成都'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>注：数据库版本</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="title function_">version</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-Java" data-language="Java"><code class="language-Java">select version();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>查出当前的mysql版本号为：<code>8.0.21</code></p>
 <ul>
 <li>在mysql中，如果你想查看某条sql语句是否使用了索引，或者已建好的索引是否失效，可以通过<code>explain</code>关键字，查看该sql语句的执行计划，来判断索引使用情况。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user where id=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user where id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>执行结果为：</p>
 <p><img src="/.com//image-20220406141421963-16492256629193.png" alt="image-20220406141421963"></p>
@@ -307,16 +319,20 @@
 </ul>
 <p>如果在使用联合索引时，没注意最左前缀原则，很有可能导致索引失效，不信我们一起往下看。</p>
 <h3 id="2-1-哪些情况索引有效？"><a href="#2-1-哪些情况索引有效？" class="headerlink" title="2.1 哪些情况索引有效？"></a>2.1 哪些情况索引有效？</h3><p>先看看哪些情况下，能走索引。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code=<span class="string">&#x27;101&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code<span class="token operator">=</span><span class="token char">'101'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code=<span class="string">&#x27;101&#x27;</span> and age=<span class="number">21</span> </span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code<span class="token operator">=</span><span class="token char">'101'</span> and age<span class="token operator">=</span><span class="token number">21</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code=<span class="string">&#x27;101&#x27;</span> and age=<span class="number">21</span> and name=<span class="string">&#x27;周星驰&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code<span class="token operator">=</span><span class="token char">'101'</span> and age<span class="token operator">=</span><span class="token number">21</span> and name<span class="token operator">=</span><span class="token char">'周星驰'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p><img src="/.com//image-20220406141617620-16492257784704.png" alt="image-20220406141617620"></p>
 <p>上面三种情况，sql都能正常走索引。</p>
 <p>其实还有一种比较特殊的场景：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line"><span class="type">where</span> <span class="variable">code</span> <span class="operator">=</span> <span class="string">&#x27;101&#x27;</span>  and name=<span class="string">&#x27;周星驰&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code <span class="token operator">=</span> <span class="token char">'101'</span>  and name<span class="token operator">=</span><span class="token char">'周星驰'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406141709253-16492258302315.png" alt="image-20220406141709253"></p>
@@ -325,24 +341,30 @@
 <p>这就是我们所说的<code>最左匹配原则</code>.</p>
 <h3 id="2-2-哪些情况索引失效？"><a href="#2-2-哪些情况索引失效？" class="headerlink" title="2.2 哪些情况索引失效？"></a>2.2 哪些情况索引失效？</h3><p>建立了联合索引后，在查询条件中有哪些情况索引是有效的。</p>
 <p>看看哪些情况下索引会失效。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where age=<span class="number">21</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where age<span class="token operator">=</span><span class="token number">21</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where name=<span class="string">&#x27;周星驰&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where name<span class="token operator">=</span><span class="token char">'周星驰'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where age=<span class="number">21</span> and name=<span class="string">&#x27;周星驰&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where age<span class="token operator">=</span><span class="token number">21</span> and name<span class="token operator">=</span><span class="token char">'周星驰'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406141854538-16492259355196.png" alt="image-20220406141854538"></p>
 <p>从图中看出这3种情况下索引确实失效了.</p>
 <p>说明以上3种情况不满足最左匹配原则，说白了是因为查询条件中，没有包含给定字段最左边的索引字段，即字段code。</p>
 <h2 id="3-使用了select"><a href="#3-使用了select" class="headerlink" title="3. 使用了select *"></a>3. 使用了select *</h2><p>在《阿里巴巴开发手册》中明确说过，查询sql中禁止使用<code>select *</code> 。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain </span><br><span class="line">select * from user where name=<span class="string">&#x27;苏三&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain 
+select <span class="token operator">*</span> from user where name<span class="token operator">=</span><span class="token char">'苏三'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406142002358-16492260034077.png" alt="image-20220406142002358"></p>
 <p>在该sql中用了<code>select *</code>，从执行结果看，走了全表扫描，没有用到任何索引，查询效率是非常低的</p>
 <p>如果查询的时候，只查我们真正需要的列，而不查所有列，结果会怎么样？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">explain </span><br><span class="line">select code,name from user </span><br><span class="line">where name=<span class="string">&#x27;苏三&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain 
+select code<span class="token punctuation">,</span>name from user 
+where name<span class="token operator">=</span><span class="token char">'苏三'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406142051187-16492260525758.png" alt="image-20220406142051187"></p>
@@ -350,26 +372,26 @@
 <p>其实这里用到了：<code>覆盖索引</code>。</p>
 <p>如果select语句中的查询列，都是索引列，那么这些列被称为覆盖索引。这种情况下，查询的相关字段都能走索引，索引查询效率相对来说更高一些。</p>
 <p>而使用<code>select *</code>查询所有列的数据，大概率会查询非索引列的数据，非索引列不会走索引，查询效率非常低。</p>
-<h2 id="4-索引列上有计算"><a href="#4-索引列上有计算" class="headerlink" title="4. 索引列上有计算"></a>4. 索引列上有计算</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user where id=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="4-索引列上有计算"><a href="#4-索引列上有计算" class="headerlink" title="4. 索引列上有计算"></a>4. 索引列上有计算</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user where id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406142153840-16492261148719.png" alt="image-20220406142153840"></p>
 <p>从图中可以看出，由于id字段是主键，该sql语句用到了<code>主键索引</code>。</p>
 <p>但如果id列上面有计算，比如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user where id+<span class="number">1</span>=<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user where id<span class="token operator">+</span><span class="token number">1</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406142234719-164922615563110-164922616837611.png" alt="image-20220406142234719"></p>
 <p>从上图中的执行结果，能够非常清楚的看出，该id字段的主键索引，在有计算的情况下失效了。</p>
 <h2 id="5-索引列用了函数"><a href="#5-索引列用了函数" class="headerlink" title="5. 索引列用了函数"></a>5. 索引列用了函数</h2><p>我们在某条sql语句的查询条件中，需要使用函数，比如：截取某个字段的长度。</p>
 <p>假如现在有个需求：想查出所有身高是17开头的人，如果sql语句写成这样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user  where height=<span class="number">17</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user  where height<span class="token operator">=</span><span class="token number">17</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>该sql语句确实用到了普通索引：</p>
 <p><img src="/.com//image-20220406142348923-164922622986312.png" alt="image-20220406142348923"></p>
 <p>但该sql语句肯定是有问题的，因为它只能查出身高正好等于17的，但对于174这种情况，它没办法查出来。</p>
 <p>为了满足上面的要求，我们需要把sql语句稍稍改造了一下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user  where <span class="title function_">SUBSTR</span><span class="params">(height,<span class="number">1</span>,<span class="number">2</span>)</span>=<span class="number">17</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user  where <span class="token function">SUBSTR</span><span class="token punctuation">(</span>height<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">17</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这时需要用到<code>SUBSTR</code>函数，用它截取了height字段的前面两位字符，从第一个字符开始。</p>
 <p>执行结果：</p>
@@ -378,15 +400,17 @@
 <h2 id="6-字段类型不同"><a href="#6-字段类型不同" class="headerlink" title="6. 字段类型不同"></a>6. 字段类型不同</h2><p>在sql语句中因为字段类型不同，而导致索引失效的问题，很容易遇到，可能是我们日常工作中最容易忽略的问题。</p>
 <p>t_user表中的code字段，它是<code>varchar</code>字符类型的。</p>
 <p>在sql语句中查询数据时，查询条件可以写成这样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain </span><br><span class="line">select * from user where code=<span class="string">&quot;101&quot;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain 
+select <span class="token operator">*</span> from user where code<span class="token operator">=</span><span class="token string">"101"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果为：</p>
 <p><img src="/.com//image-20220406142609698-164922637088114.png" alt="image-20220406142609698"></p>
 <p>从上图中看到，该code字段走了索引。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">温馨提醒一下，查询字符字段时，用双引号“和单引号<span class="string">&#x27;都可以。</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">温馨提醒一下，查询字符字段时，用双引号“和单引号'都可以。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>在写sql时，不小心把引号弄掉了，把sql语句变成了：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain </span><br><span class="line">select * from user where code=<span class="number">101</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain 
+select <span class="token operator">*</span> from user where code<span class="token operator">=</span><span class="token number">101</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406142716121-164922643731115.png" alt="image-20220406142716121"></p>
@@ -394,7 +418,8 @@
 <p>为什么索引会失效呢？</p>
 <p>答：因为code字段的类型是varchar，而传参的类型是int，两种类型不同。</p>
 <p>如果int类型的height字段，在查询时加了引号条件，却还可以走索引：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user </span><br><span class="line">where height=<span class="string">&#x27;175&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user 
+where height<span class="token operator">=</span><span class="token char">'175'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406142816849-164922649748016.png" alt="image-20220406142816849"></p>
@@ -402,7 +427,7 @@
 <p>答：mysql发现如果是<code>int</code>类型字段作为查询条件时，它会自动将该字段的传参进行<code>隐式转换</code>，把字符串转换成int类型。</p>
 <p>mysql会把上面列子中的字符串175，转换成数字175，所以仍然能走索引。</p>
 <p>接下来，看一个更有趣的sql语句：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="number">1</span> + <span class="string">&#x27;1&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">select <span class="token number">1</span> <span class="token operator">+</span> <span class="token char">'1'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>它的执行结果是2，还是11呢？</p>
 <p>答案执行结果是2。</p>
@@ -410,7 +435,7 @@
 <p>但如果你确实想拼接字符串该怎么办？</p>
 <p>答：可以使用<code>concat</code>关键字。</p>
 <p>具体拼接sql如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select <span class="title function_">concat</span><span class="params">(<span class="number">1</span>,<span class="string">&#x27;1&#x27;</span>)</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">select <span class="token function">concat</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token char">'1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>接下来，关键问题来了：<strong>为什么字符串类型的字段，传入了int类型的参数时索引会失效呢？</strong></p>
 <p>答：根据mysql官网上解释，字符串’1’、’ 1 ‘、’1a’都能转换成int类型的1，也就是说可能会出现多个字符串，对应一个int类型参数的情况。那么，mysql怎么知道该把int类型的1转换成哪种字符串，用哪个索引快速查值?</p>
@@ -418,7 +443,7 @@
 <h2 id="7-like左边包含"><a href="#7-like左边包含" class="headerlink" title="7. like左边包含%"></a>7. like左边包含%</h2><p>模糊查询，在我们日常的工作中，使用频率还是比较高的。</p>
 <p>比如现在有个需求：想查询姓李的同学有哪些?</p>
 <p>使用<code>like</code>语句可以很快的实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from user where name like <span class="string">&#x27;李%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">select <span class="token operator">*</span> from user where name like <span class="token char">'李%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>但如果like用的不好，就可能会出现性能问题，因为有时候它的索引会失效。</p>
 <p>目前like查询主要有三种情况：</p>
@@ -429,18 +454,21 @@
 </ul>
 <p>假如现在有个需求：想查出所有code是10开头的用户。</p>
 <p>sql语句如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code like <span class="string">&#x27;10%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code like <span class="token char">'10%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果为：</p>
 <p><img src="/.com//image-20220406143111685-164922667263317.png" alt="image-20220406143111685"></p>
 <p>图中看出这种<code>%</code>在<code>10</code>右边时走了索引。</p>
 <p>而如果把需求改了：想出现出所有code是1结尾的用户。</p>
 <p>查询sql语句改为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code like <span class="string">&#x27;%1&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code like <span class="token char">'%1'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>从图中看出这种<code>%</code>在<code>1</code>左边时，code字段上索引失效了，该sql变成了全表扫描。</p>
 <p>此外，如果出现以下sql：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code like <span class="string">&#x27;%1%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code like <span class="token char">'%1%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>该sql语句的索引也会失效。</p>
 <p>下面用一句话总结一下规律：当<code>like</code>语句中的<code>%</code>，出现在查询条件的左边时，索引会失效。</p>
@@ -451,7 +479,8 @@
 <p>但如果你硬要跟目录的设计反着来，先从字典目录右边匹配第一个字母，这画面你可以自行脑补一下，你眼中可能只剩下绝望了.</p>
 <h2 id="8-列对比"><a href="#8-列对比" class="headerlink" title="8. 列对比"></a>8. 列对比</h2><p>假如我们现在有这样一个需求：过滤出表中某两列值相同的记录。比如user表中id字段和height字段，查询出这两个字段中值相同的记录。</p>
 <p>sql可以这样写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user </span><br><span class="line">where id=height</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user 
+where id<span class="token operator">=</span>height<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果为：</p>
 <p><img src="/.com//image-20220406143252693-164922677380718-164922678515919-164922678707920.png" alt="image-20220406143252693"></p>
@@ -461,20 +490,22 @@
 <h2 id="9-使用or关键字"><a href="#9-使用or关键字" class="headerlink" title="9. 使用or关键字"></a>9. 使用or关键字</h2><p>我们平时在写查询sql时，使用<code>or</code>关键字的场景非常多，但如果你稍不注意，就可能让已有的索引失效。</p>
 <p>遇到这样一个需求：想查一下id&#x3D;1或者height&#x3D;175的用户。</p>
 <p>sql实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user </span><br><span class="line">where id=<span class="number">1</span> or height=<span class="string">&#x27;175&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user 
+where id<span class="token operator">=</span><span class="token number">1</span> or height<span class="token operator">=</span><span class="token char">'175'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406143427082-164922686799321.png" alt="image-20220406143427082"></p>
 <p>这次确实走了索引，因为刚好id和height字段都建了索引。</p>
 <p>需求改了：除了前面的查询条件之后，还想加一个address&#x3D;’成都’。</p>
 <p>sql实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user </span><br><span class="line">where id=<span class="number">1</span> or height=<span class="string">&#x27;175&#x27;</span> or address=<span class="string">&#x27;成都&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user 
+where id<span class="token operator">=</span><span class="token number">1</span> or height<span class="token operator">=</span><span class="token char">'175'</span> or address<span class="token operator">=</span><span class="token char">'成都'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406143529336-164922693024122.png" alt="image-20220406143529336"></p>
 <p>之前的索引都失效了。</p>
 <p>答：因为你最后加的address字段没有加索引，从而导致其他字段的索引都失效了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意：如果使用了or关键字，那么它前面和后面的字段都要加索引，不然所有的索引都会失效，这是一个大坑。</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">注意：如果使用了or关键字，那么它前面和后面的字段都要加索引，不然所有的索引都会失效，这是一个大坑。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="10-not-in和not-exists"><a href="#10-not-in和not-exists" class="headerlink" title="10. not in和not exists"></a>10. not in和not exists</h2><p>在我们日常工作中用得也比较多的，还有范围查询，常见的有：</p>
 <ul>
@@ -485,32 +516,37 @@
 <li>between and</li>
 </ul>
 <h3 id="10-1-in关键字"><a href="#10-1-in关键字" class="headerlink" title="10.1 in关键字"></a>10.1 in关键字</h3><p>想查出height在某些范围之内的用户，这时sql语句可以这样写：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where height <span class="title function_">in</span> <span class="params">(<span class="number">173</span>,<span class="number">174</span>,<span class="number">175</span>,<span class="number">176</span>)</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where height in <span class="token punctuation">(</span><span class="token number">173</span><span class="token punctuation">,</span><span class="token number">174</span><span class="token punctuation">,</span><span class="token number">175</span><span class="token punctuation">,</span><span class="token number">176</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406143706549-164922702762423.png" alt="image-20220406143706549"></p>
 <p>sql语句中用<code>in</code>关键字是走了索引的。</p>
 <h3 id="10-2-exists关键字"><a href="#10-2-exists关键字" class="headerlink" title="10.2 exists关键字"></a>10.2 exists关键字</h3><p>有时候使用<code>in</code>关键字时性能不好，这时就能用<code>exists</code>关键字优化sql了，该关键字能达到in关键字相同的效果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user  t1</span><br><span class="line">where  <span class="title function_">exists</span> <span class="params">(select <span class="number">1</span> from user t2 where t2.height=<span class="number">173</span> and t1.id=t2.id)</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user  t1
+where  exists <span class="token punctuation">(</span>select <span class="token number">1</span> from user t2 where t2<span class="token punctuation">.</span>height<span class="token operator">=</span><span class="token number">173</span> and t1<span class="token punctuation">.</span>id<span class="token operator">=</span>t2<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406143803014-164922708392024.png" alt="image-20220406143803014"></p>
 <p>用<code>exists</code>关键字同样走了索引。</p>
 <h3 id="10-3-not-in关键字"><a href="#10-3-not-in关键字" class="headerlink" title="10.3 not in关键字"></a>10.3 not in关键字</h3><p>反向的范围，即不在某些范围之内，能走索引不？</p>
 <p>先看看使用<code>not in</code>的情况：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where height not <span class="title function_">in</span> <span class="params">(<span class="number">173</span>,<span class="number">174</span>,<span class="number">175</span>,<span class="number">176</span>)</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where height not in <span class="token punctuation">(</span><span class="token number">173</span><span class="token punctuation">,</span><span class="token number">174</span><span class="token punctuation">,</span><span class="token number">175</span><span class="token punctuation">,</span><span class="token number">176</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406143857160-164922713808025.png" alt="image-20220406143857160"></p>
 <p>索引失效了。</p>
 <p>想查一下id不等于1、2、3的用户有哪些，这时sql语句可以改成这样：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where id  not <span class="title function_">in</span> <span class="params">(<span class="number">173</span>,<span class="number">174</span>,<span class="number">175</span>,<span class="number">176</span>)</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where id  not in <span class="token punctuation">(</span><span class="token number">173</span><span class="token punctuation">,</span><span class="token number">174</span><span class="token punctuation">,</span><span class="token number">175</span><span class="token punctuation">,</span><span class="token number">176</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144022515-164922722428226.png" alt="image-20220406144022515"></p>
 <p>主键字段中使用not in关键字查询数据范围，任然可以走索引。而普通索引字段使用了not in关键字查询数据范围，索引会失效。</p>
 <h3 id="10-4-not-exists关键字"><a href="#10-4-not-exists关键字" class="headerlink" title="10.4 not exists关键字"></a>10.4 not exists关键字</h3><p>如果sql语句中使用<code>not exists</code>时，索引也会失效。具体sql语句如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user  t1</span><br><span class="line">where  not <span class="title function_">exists</span> <span class="params">(select <span class="number">1</span> from user t2 where t2.height=<span class="number">173</span> and t1.id=t2.id)</span></span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user  t1
+where  not exists <span class="token punctuation">(</span>select <span class="token number">1</span> from user t2 where t2<span class="token punctuation">.</span>height<span class="token operator">=</span><span class="token number">173</span> and t1<span class="token punctuation">.</span>id<span class="token operator">=</span>t2<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144112923-164922727385627.png" alt="image-20220406144112923"></p>
@@ -520,56 +556,74 @@
 <h3 id="11-1-哪些情况走索引？"><a href="#11-1-哪些情况走索引？" class="headerlink" title="11.1 哪些情况走索引？"></a>11.1 哪些情况走索引？</h3><p>order by的哪些情况可以走索引。</p>
 <p>我之前说过，在code、age和name这3个字段上，已经建了联合索引：idx_code_age_name。</p>
 <h4 id="11-1-1-满足最左匹配原则"><a href="#11-1-1-满足最左匹配原则" class="headerlink" title="11.1.1 满足最左匹配原则"></a>11.1.1 满足最左匹配原则</h4><p>order by后面的条件，也要遵循联合索引的最左匹配原则。具体有以下sql：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">order by code limit <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">explain select * from user</span><br><span class="line">order by code,age limit <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">explain select * from user</span><br><span class="line">order by code,age,name limit <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+order by code limit <span class="token number">100</span><span class="token punctuation">;</span>
+
+explain select <span class="token operator">*</span> from user
+order by code<span class="token punctuation">,</span>age limit <span class="token number">100</span><span class="token punctuation">;</span>
+
+explain select <span class="token operator">*</span> from user
+order by code<span class="token punctuation">,</span>age<span class="token punctuation">,</span>name limit <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144247573-164922736841028.png" alt="image-20220406144247573"></p>
 <p>从图中看出这3条sql都能够正常走索引。</p>
 <p>除了遵循最左匹配原则之外，有个非常关键的地方是，后面还是加了<code>limit</code>关键字，如果不加它索引会失效。</p>
 <h4 id="11-1-2-配合where一起使用"><a href="#11-1-2-配合where一起使用" class="headerlink" title="11.1.2 配合where一起使用"></a>11.1.2 配合where一起使用</h4><p>order by还能配合where一起遵循最左匹配原则。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code=<span class="string">&#x27;101&#x27;</span></span><br><span class="line">order by age;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code<span class="token operator">=</span><span class="token char">'101'</span>
+order by age<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144338400-164922741929729.png" alt="image-20220406144338400"></p>
 <p>code是联合索引的第一个字段，在where中使用了，而age是联合索引的第二个字段，在order by中接着使用。</p>
 <p>假如中间断层了，sql语句变成这样，执行结果会是什么呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code=<span class="string">&#x27;101&#x27;</span></span><br><span class="line">order by name;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code<span class="token operator">=</span><span class="token char">'101'</span>
+order by name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>虽说name是联合索引的第三个字段，但根据最左匹配原则，该sql语句依然能走索引，因为最左边的第一个字段code，在where中使用了。只不过order by的时候，排序效率比较低，需要走一次<code>filesort</code>排序罢了。</p>
 <h4 id="11-1-3-相同的排序"><a href="#11-1-3-相同的排序" class="headerlink" title="11.1.3 相同的排序"></a>11.1.3 相同的排序</h4><p>order by后面如果包含了联合索引的多个排序字段，只要它们的排序规律是相同的（要么同时升序，要么同时降序），也可以走索引。</p>
 <p>具体sql如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">order by code desc,age desc limit <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+order by code desc<span class="token punctuation">,</span>age desc limit <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144449824-164922749073030.png" alt="image-20220406144449824"></p>
 <p>该示例中order by后面的code和age字段都用了降序，所以依然走了索引。</p>
 <h4 id="11-1-4-两者都有"><a href="#11-1-4-两者都有" class="headerlink" title="11.1.4 两者都有"></a>11.1.4 两者都有</h4><p>如果某个联合索引字段，在where和order by中都有，结果会怎么样？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">where code=<span class="string">&#x27;101&#x27;</span></span><br><span class="line">order by code, name;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+where code<span class="token operator">=</span><span class="token char">'101'</span>
+order by code<span class="token punctuation">,</span> name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144531860-164922753289031.png" alt="image-20220406144531860"></p>
 <p>code字段在where和order by中都有，对于这种情况，从图中的结果看出，还是能走了索引的。</p>
 <h3 id="11-2-哪些情况不走索引？"><a href="#11-2-哪些情况不走索引？" class="headerlink" title="11.2 哪些情况不走索引？"></a>11.2 哪些情况不走索引？</h3><p>聊聊order by的哪些情况下不走索引？</p>
 <h4 id="11-2-1-没加where或limit"><a href="#11-2-1-没加where或limit" class="headerlink" title="11.2.1 没加where或limit"></a>11.2.1 没加where或limit</h4><p>如果order by语句中没有加where或limit关键字，该sql语句将不会走索引。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">order by code, name;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+order by code<span class="token punctuation">,</span> name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144627024-164922758794532.png" alt="image-20220406144627024"></p>
 <p>图中看出索引真的失效了。</p>
 <h4 id="11-2-2-对不同的索引做order-by"><a href="#11-2-2-对不同的索引做order-by" class="headerlink" title="11.2.2 对不同的索引做order by"></a>11.2.2 对不同的索引做order by</h4><p>前面介绍的基本都是联合索引，这一个索引的情况。但如果对多个索引进行order by，结果会怎么样呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">order by code, height limit <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+order by code<span class="token punctuation">,</span> height limit <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144706360-164922762723333.png" alt="image-20220406144706360"></p>
 <p>从图中看出索引也失效了。</p>
 <h4 id="11-2-3-不满足最左匹配原则"><a href="#11-2-3-不满足最左匹配原则" class="headerlink" title="11.2.3 不满足最左匹配原则"></a>11.2.3 不满足最左匹配原则</h4><p>前面已经介绍过，order by如果满足最左匹配原则，还是会走索引。下面看看，不满足最左匹配原则的情况：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">order by name limit <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+order by name limit <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144748630-164922766950634.png" alt="image-20220406144748630"></p>
 <p>name字段是联合索引的第三个字段，从图中看出如果order by不满足最左匹配原则，确实不会走索引。</p>
 <h4 id="11-2-4-不同的排序"><a href="#11-2-4-不同的排序" class="headerlink" title="11.2.4 不同的排序"></a>11.2.4 不同的排序</h4><p>如果order by后面有一个联合索引的多个字段，它们具有相同排序规则，那么会走索引。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">explain select * from user</span><br><span class="line">order by code asc,age desc limit <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">explain select <span class="token operator">*</span> from user
+order by code asc<span class="token punctuation">,</span>age desc limit <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>执行结果：</p>
 <p><img src="/.com//image-20220406144827085-164922770799335.png" alt="image-20220406144827085"></p>
@@ -584,11 +638,11 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>作者: </span>
+      <span>原文作者: </span>
       <a href="http://example.com">even</a>
     </p>
     <p class="copyright-item">
-      <span>Link: </span>
+      <span>原文链接: </span>
       <a href="http://example.com/2022/04/06/%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/">http://example.com/2022/04/06/%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/</a>
     </p>
     <p class="copyright-item">
@@ -620,13 +674,13 @@
       <a class="prev" href="../../../05/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">设计模式</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
       <a class="next" href="../../05/%E7%AE%80%E8%BF%B0HashMap/">
         <span class="next-text nav-default">HashMap</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     
@@ -696,11 +750,11 @@
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
