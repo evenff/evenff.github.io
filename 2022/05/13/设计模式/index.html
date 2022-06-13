@@ -17,7 +17,12 @@
 
 
 
-  <meta name="description" content="源于追求技术的深度"/>
+  <meta name="description" content="设计模式"/>
+
+
+
+
+  <meta name="keywords" content="JAVA, 后端, evenff" />
 
 
 
@@ -28,32 +33,29 @@
 
 
 
-
-
-
-  <link rel="alternate" href="../../default" title="evenff" >
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico?v=2.9.0" />
-
-
-
-<link rel="canonical" href="http://example.com/archives/2022/"/>
-
-
-
-  <link rel="stylesheet" type="text/css" href="../../lib/fancybox/jquery.fancybox.css" />
+  <link rel="alternate" href="../../../../default" title="evenff" >
 
 
 
 
-  <link rel="stylesheet" type="text/css" href="../../lib/nprogress/nprogress.min.css" />
+  <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico?v=2.9.0" />
 
 
 
-<link rel="stylesheet" type="text/css" href="../../css/style.css?v=2.9.0" />
+<link rel="canonical" href="http://example.com/2022/05/13/设计模式/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../../../../lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="../../../../lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="../../../../css/style.css?v=2.9.0" />
 
 
 
@@ -95,16 +97,12 @@
   window.config = {"since":2015,"favicon":"/favicon.ico","rss":"default","menu":{"主页":"/","归档":"/archives/","标签":"/tags","分类":"/categories","关于":"/about"},"theme":{"color":"Cobalt Blue"},"toc":true,"languages":"zh-cn","fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"2250377639@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/evenff","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"6SAipOnC2vR4Xi67GbfvNMis-gzGzoHsz","app_key":"q1IEuvFArjwpRfqYi4rKsmFt"},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
 </script>
 
-    <title>
-  
-    Archives - evenff
-  
-</title>
+    <title> 设计模式 - evenff </title>
   <meta name="generator" content="Hexo 6.1.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="../../." class="logo">evenff</a>
+    <a href="../../../../." class="logo">evenff</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -166,7 +164,7 @@
 
     <div class="container" id="mobile-panel">
       <header id="header" class="header"><div class="logo-wrapper">
-  <a href="../../." class="logo">evenff</a>
+  <a href="../../../../." class="logo">evenff</a>
 </div>
 
 <nav class="site-navbar">
@@ -229,155 +227,125 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title">
-          <span class="archive-post-counter">
-            6 Posts In Total
-          </span>
-        </div>
-      
-    
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          设计模式
+        
+      </h1>
 
-    
-      
+      <div class="post-meta">
+        <span class="post-time">
+          2022-05-13
+        </span>
         
         
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year">2022</h2>
+        <div class="post-visits"
+             data-url=""
+             data-title="设计模式">
+            阅读次数 0
           </div>
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            06-13
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="../../2022/06/13/luhn%E7%AE%97%E6%B3%95/" class="archive-post-link">
-            支付动态码，TOTP算法及luhn算法
-          </a>
-        </span>
       </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-text">设计模式</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>简述一些设计模式</p>
+<span id="more"></span>
+
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><p><strong>工厂模式</strong>：</p>
+<p>&#96;&#96; java中最常用的设计模式之一，类型的设计模式属于创建型模式，提供了一种创建对象的最佳方式</p>
+<p>&#96;&#96; 在工厂模式中，我们在创建对象时不会对客户端暴露创建逻辑，并且是通过使用一个共同的接口来指向新创建的对象</p>
+<p><strong>介绍</strong></p>
+<p>意图：定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</p>
+<p><strong>关于使用</strong>：明确计划不同条件下创建不同实例时</p>
+<p><strong>解决</strong>：让其子类实现工厂接口，返回的也是一个抽象的产品</p>
+<p>&#x3D;&#x3D;注意事项&#x3D;&#x3D;：工厂模式作为创建类模式，在任何需要生成复杂对象的地方，都可以使用工厂方法模式，有一点需要注意的就是复杂对象适合使用工厂模式，而简单对象，就直接new吧</p>
+
+      
+    </div>
+
     
       
-        
-        
-
-        
       
 
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            05-13
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="../../2022/05/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-post-link">
-            设计模式
-          </a>
-        </span>
-      </div>
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>作者: </span>
+      <a href="http://example.com">even</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://example.com/2022/05/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">http://example.com/2022/05/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
     
-      
-        
-        
 
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            04-06
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="../../2022/04/06/%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/" class="archive-post-link">
-            索引失效场景解析
-          </a>
-        </span>
-      </div>
     
-      
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="../../../../tags/JAVA/">JAVA</a>
+            
+              <a href="../../../../tags/%E5%90%8E%E7%AB%AF/">后端</a>
+            
+          </div>
         
         
-
         
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            04-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="../../2022/04/05/%E7%AE%80%E8%BF%B0HashMap/" class="archive-post-link">
-            HashMap
-          </a>
-        </span>
-      </div>
+  <nav class="post-nav">
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            04-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="../../2022/04/05/Http%E5%92%8CHttps%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-post-link">
-            Http和Https的区别
-          </a>
-        </span>
-      </div>
+      <a class="prev" href="../../../06/13/luhn%E7%AE%97%E6%B3%95/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">支付动态码，TOTP算法及luhn算法</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
     
-      
-        
-        
-
-        
-      
-
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            04-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="../../2022/04/04/%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86/" class="archive-post-link">
-            个人简历
-          </a>
-        </span>
-      </div>
     
-  </section>
-
-  
-  <nav class="pagination">
-    
+      <a class="next" href="../../../04/06/%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E5%9C%BA%E6%99%AF/">
+        <span class="next-text nav-default">索引失效场景解析</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
@@ -423,7 +391,7 @@
     
     
       
-      <a href="../../atom.xml" class="iconfont icon-rss" title="rss"></a>
+      <a href="../../../../atom.xml" class="iconfont icon-rss" title="rss"></a>
     
   </div>
 
@@ -461,6 +429,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     
@@ -476,27 +449,27 @@
 
 
   
-    <script type="text/javascript" src="../../lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../../lib/jquery/jquery.min.js"></script>
   
 
   
-    <script type="text/javascript" src="../../lib/slideout/slideout.js"></script>
+    <script type="text/javascript" src="../../../../lib/slideout/slideout.js"></script>
   
 
   
-    <script type="text/javascript" src="../../lib/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="../../../../lib/fancybox/jquery.fancybox.pack.js"></script>
   
 
   
-    <script type="text/javascript" src="../../lib/pjax/jquery.pjax.min.js"></script>
+    <script type="text/javascript" src="../../../../lib/pjax/jquery.pjax.min.js"></script>
   
 
   
-    <script type="text/javascript" src="../../lib/nprogress/nprogress.min.js"></script>
+    <script type="text/javascript" src="../../../../lib/nprogress/nprogress.min.js"></script>
   
 
 
-    <script type="text/javascript" src="../../js/src/even.js?v=2.9.0"></script>
+    <script type="text/javascript" src="../../../../js/src/even.js?v=2.9.0"></script>
 
   </body>
 </html>
