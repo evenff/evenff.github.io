@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="工作流引擎Activi回顾"/>
+
+
+
+
+  <meta name="keywords" content="后端, 引擎, 自动化, 工作流, evenff" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="../../../../default" title="evenff" >
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="http://example.com/2022/06/14/工作流Activiti/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="../../../../lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="../../../../lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="../../../../css/style.css?v=2.9.0" />
+
+
+
+  
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "6SAipOnC2vR4Xi67GbfvNMis-gzGzoHsz",
+      appKey: "q1IEuvFArjwpRfqYi4rKsmFt"
+    });
+  </script>
+
+
+
+
+<script>
+  window.config = {"since":2015,"favicon":"/favicon.ico","rss":"default","menu":{"主页":"/","归档":"/archives/","标签":"/tags","分类":"/categories","关于":"/about"},"theme":{"color":"Cobalt Blue"},"toc":true,"languages":"zh-cn","fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"social":{"email":"2250377639@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/evenff","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":"6SAipOnC2vR4Xi67GbfvNMis-gzGzoHsz","app_key":"q1IEuvFArjwpRfqYi4rKsmFt"},"baidu_analytics":null,"baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> 工作流引擎Activi回顾 - evenff </title>
+  <meta name="generator" content="Hexo 6.1.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="../../../../." class="logo">evenff</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="">
+        <li class="mobile-menu-item">
+          
+          
+            主页
+          
+        </li>
+      </a>
+    
+      <a href="">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="../../../../." class="logo">evenff</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              主页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          工作流引擎Activi回顾
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-06-14
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="../../../../categories/Java/">Java</a>
+            
+              <a href="../../../../categories/Java/%E5%B7%A5%E4%BD%9C%E6%B5%81/">工作流</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url=""
+             data-title="工作流引擎Activi回顾">
+            阅读次数 0
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%9F%A5%E8%AF%A2%E5%BE%85%E5%8A%9E%E4%BB%BB%E5%8A%A1-Task"><span class="toc-text">用户查询待办任务(Task)</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <p>简述工作流Activiti</p>
+<span id="more"></span>
+
+<blockquote>
+<p>最近有时间了，记录一下之前的技术</p>
+</blockquote>
+<p>事件：</p>
+<blockquote>
+<p>生产环境中，对业务流程自动化执行管理</p>
+</blockquote>
+<ul>
+<li><p>发起节点，开始节点，审批节点，抄送节点，结束节点</p>
+</li>
+<li><p>根据角色权限认证</p>
+</li>
+</ul>
+<p>实现方式：</p>
+<p>没有工作流之前，为了流程实现流程控制值采用状态字段的值来跟踪流程的变化情况</p>
+<p>最为原始，根据字段判断流程处于什么状态</p>
+<p>可以查看<a target="_blank" rel="noopener" href="https://www.activiti.org/">Activiti官方文档</a></p>
+<ul>
+<li><p>BPM</p>
+<blockquote>
+<p>业务流程管理，规范化的构造端到端的业务流程</p>
+</blockquote>
+</li>
+<li><p>BPMN</p>
+<blockquote>
+<p>流程过程中发生的状态变更</p>
+</blockquote>
+</li>
+</ul>
+<p>Bpmn图形是通过xml表示业务流程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;definitions xmlns=<span class="string">&quot;http://www.omg.org/spec/BPMN/20100524/MODEL&quot;</span> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> xmlns:xsd=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> xmlns:activiti=<span class="string">&quot;http://activiti.org/bpmn&quot;</span> xmlns:bpmndi=<span class="string">&quot;http://www.omg.org/spec/BPMN/20100524/DI&quot;</span> xmlns:omgdc=<span class="string">&quot;http://www.omg.org/spec/DD/20100524/DC&quot;</span> xmlns:omgdi=<span class="string">&quot;http://www.omg.org/spec/DD/20100524/DI&quot;</span> typeLanguage=<span class="string">&quot;http://www.w3.org/2001/XMLSchema&quot;</span> expressionLanguage=<span class="string">&quot;http://www.w3.org/1999/XPath&quot;</span> targetNamespace=<span class="string">&quot;http://www.activiti.org/test&quot;</span>&gt;</span><br><span class="line">  &lt;process id=<span class="string">&quot;myProcess&quot;</span> name=<span class="string">&quot;My process&quot;</span> isExecutable=<span class="string">&quot;true&quot;</span>&gt;</span><br><span class="line">    &lt;startEvent id=<span class="string">&quot;startevent1&quot;</span> name=<span class="string">&quot;Start&quot;</span>&gt;&lt;/startEvent&gt;</span><br><span class="line">    &lt;userTask id=<span class="string">&quot;usertask1&quot;</span> name=<span class="string">&quot;创建请假单&quot;</span>&gt;&lt;/userTask&gt;</span><br><span class="line">    &lt;sequenceFlow id=<span class="string">&quot;flow1&quot;</span> sourceRef=<span class="string">&quot;startevent1&quot;</span> targetRef=<span class="string">&quot;usertask1&quot;</span>&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">    &lt;userTask id=<span class="string">&quot;usertask2&quot;</span> name=<span class="string">&quot;部门经理审核&quot;</span>&gt;&lt;/userTask&gt;</span><br><span class="line">    &lt;sequenceFlow id=<span class="string">&quot;flow2&quot;</span> sourceRef=<span class="string">&quot;usertask1&quot;</span> targetRef=<span class="string">&quot;usertask2&quot;</span>&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">    &lt;userTask id=<span class="string">&quot;usertask3&quot;</span> name=<span class="string">&quot;人事复核&quot;</span>&gt;&lt;/userTask&gt;</span><br><span class="line">    &lt;sequenceFlow id=<span class="string">&quot;flow3&quot;</span> sourceRef=<span class="string">&quot;usertask2&quot;</span> targetRef=<span class="string">&quot;usertask3&quot;</span>&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">    &lt;endEvent id=<span class="string">&quot;endevent1&quot;</span> name=<span class="string">&quot;End&quot;</span>&gt;&lt;/endEvent&gt;</span><br><span class="line">    &lt;sequenceFlow id=<span class="string">&quot;flow4&quot;</span> sourceRef=<span class="string">&quot;usertask3&quot;</span> targetRef=<span class="string">&quot;endevent1&quot;</span>&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">  &lt;/process&gt;</span><br><span class="line">  &lt;bpmndi:BPMNDiagram id=<span class="string">&quot;BPMNDiagram_myProcess&quot;</span>&gt;</span><br><span class="line">    &lt;bpmndi:BPMNPlane bpmnElement=<span class="string">&quot;myProcess&quot;</span> id=<span class="string">&quot;BPMNPlane_myProcess&quot;</span>&gt;</span><br><span class="line">      &lt;bpmndi:BPMNShape bpmnElement=<span class="string">&quot;startevent1&quot;</span> id=<span class="string">&quot;BPMNShape_startevent1&quot;</span>&gt;</span><br><span class="line">        &lt;omgdc:Bounds height=<span class="string">&quot;35.0&quot;</span> width=<span class="string">&quot;35.0&quot;</span> x=<span class="string">&quot;130.0&quot;</span> y=<span class="string">&quot;160.0&quot;</span>&gt;&lt;/omgdc:Bounds&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNShape&gt;</span><br><span class="line">      &lt;bpmndi:BPMNShape bpmnElement=<span class="string">&quot;usertask1&quot;</span> id=<span class="string">&quot;BPMNShape_usertask1&quot;</span>&gt;</span><br><span class="line">        &lt;omgdc:Bounds height=<span class="string">&quot;55.0&quot;</span> width=<span class="string">&quot;105.0&quot;</span> x=<span class="string">&quot;210.0&quot;</span> y=<span class="string">&quot;150.0&quot;</span>&gt;&lt;/omgdc:Bounds&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNShape&gt;</span><br><span class="line">      &lt;bpmndi:BPMNShape bpmnElement=<span class="string">&quot;usertask2&quot;</span> id=<span class="string">&quot;BPMNShape_usertask2&quot;</span>&gt;</span><br><span class="line">        &lt;omgdc:Bounds height=<span class="string">&quot;55.0&quot;</span> width=<span class="string">&quot;105.0&quot;</span> x=<span class="string">&quot;360.0&quot;</span> y=<span class="string">&quot;150.0&quot;</span>&gt;&lt;/omgdc:Bounds&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNShape&gt;</span><br><span class="line">      &lt;bpmndi:BPMNShape bpmnElement=<span class="string">&quot;usertask3&quot;</span> id=<span class="string">&quot;BPMNShape_usertask3&quot;</span>&gt;</span><br><span class="line">        &lt;omgdc:Bounds height=<span class="string">&quot;55.0&quot;</span> width=<span class="string">&quot;105.0&quot;</span> x=<span class="string">&quot;510.0&quot;</span> y=<span class="string">&quot;150.0&quot;</span>&gt;&lt;/omgdc:Bounds&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNShape&gt;</span><br><span class="line">      &lt;bpmndi:BPMNShape bpmnElement=<span class="string">&quot;endevent1&quot;</span> id=<span class="string">&quot;BPMNShape_endevent1&quot;</span>&gt;</span><br><span class="line">        &lt;omgdc:Bounds height=<span class="string">&quot;35.0&quot;</span> width=<span class="string">&quot;35.0&quot;</span> x=<span class="string">&quot;660.0&quot;</span> y=<span class="string">&quot;160.0&quot;</span>&gt;&lt;/omgdc:Bounds&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNShape&gt;</span><br><span class="line">      &lt;bpmndi:BPMNEdge bpmnElement=<span class="string">&quot;flow1&quot;</span> id=<span class="string">&quot;BPMNEdge_flow1&quot;</span>&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;165.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;210.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNEdge&gt;</span><br><span class="line">      &lt;bpmndi:BPMNEdge bpmnElement=<span class="string">&quot;flow2&quot;</span> id=<span class="string">&quot;BPMNEdge_flow2&quot;</span>&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;315.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;360.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNEdge&gt;</span><br><span class="line">      &lt;bpmndi:BPMNEdge bpmnElement=<span class="string">&quot;flow3&quot;</span> id=<span class="string">&quot;BPMNEdge_flow3&quot;</span>&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;465.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;510.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNEdge&gt;</span><br><span class="line">      &lt;bpmndi:BPMNEdge bpmnElement=<span class="string">&quot;flow4&quot;</span> id=<span class="string">&quot;BPMNEdge_flow4&quot;</span>&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;615.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">        &lt;omgdi:waypoint x=<span class="string">&quot;660.0&quot;</span> y=<span class="string">&quot;177.0&quot;</span>&gt;&lt;/omgdi:waypoint&gt;</span><br><span class="line">      &lt;/bpmndi:BPMNEdge&gt;</span><br><span class="line">    &lt;/bpmndi:BPMNPlane&gt;</span><br><span class="line">  &lt;/bpmndi:BPMNDiagram&gt;</span><br><span class="line">&lt;/definitions&gt;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>部署工作流</p>
+<p>使用activiti流程建模工具(activity-designer)定义业务流程(.bpmn文件) 。</p>
+</li>
+</ol>
+<p>.bpmn文件就是业务流程定义文件，通过xml定义业务流程。</p>
+<blockquote>
+<p>流程定义</p>
+</blockquote>
+<p>activiti部署业务流程定义（.bpmn文件）。</p>
+<p>使用activiti提供的api把流程定义内容存储起来，在Activiti执行过程中可以查询定义的内容</p>
+<p>Activiti执行把流程定义内容存储在数据库中</p>
+<h6 id="用户查询待办任务-Task"><a href="#用户查询待办任务-Task" class="headerlink" title="用户查询待办任务(Task)"></a>用户查询待办任务(Task)</h6><p>因为现在系统的业务流程已经交给activiti管理，通过activiti就可以查询当前流程执行到哪了，当前用户需要办理什么任务了，这些activiti帮我们管理了，而不需要开发人员自己编写在sql语句查询。</p>
+<blockquote>
+<p>开发环境</p>
+<blockquote>
+<p>jdk8,mysql5.7,tomcat8.5,IDEA</p>
+</blockquote>
+</blockquote>
+<p>下载地址：<a target="_blank" rel="noopener" href="http://activiti.org/download.html">http://activiti.org/download.html</a></p>
+<p>引入依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;activiti-spring&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">5.19</span><span class="number">.0</span><span class="number">.2</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>流程设计器（暂时IDEA）</p>
+<p>plugins引入工作流插件</p>
+<p>数据库生成（mysql）</p>
+<p>创建 mysql 数据库 activiti （名字任意）：</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE activiti DEFAULT CHARACTER SET utf8;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>使用java代码生成表</strong></p>
+<ul>
+<li>创建 java 工程</li>
+</ul>
+<p>使用idea 创建 java 的maven工程，取名：activiti01。</p>
+<ul>
+<li>加入 maven 依赖的坐标（jar 包）</li>
+</ul>
+<p>首先需要在 java 工程中加入 ProcessEngine 所需要的 jar 包，包括：</p>
+<ol>
+<li>activiti-engine-5.19.0.jar</li>
+<li>activiti 依赖的 jar 包：mybatis、 alf4j、 log4j 等</li>
+<li>activiti 依赖的 spring 包</li>
+<li>mysql数据库驱动</li>
+<li>第三方数据连接池 dbcp</li>
+<li>单元测试 Junit-4.12.jar</li>
+</ol>
+<p>我们使用 maven 来实现项目的构建，所以应当导入这些 jar 所对应的坐标到 pom.xml 文件中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;slf4j.version&gt;<span class="number">1.6</span><span class="number">.6</span>&lt;/slf4j.version&gt;</span><br><span class="line">    &lt;log4j.version&gt;<span class="number">1.2</span><span class="number">.12</span>&lt;/log4j.version&gt;</span><br><span class="line">    &lt;activiti.version&gt;<span class="number">5.19</span><span class="number">.0</span>&lt;/activiti.version&gt;</span><br><span class="line">&lt;/properties&gt;</span><br><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-engine&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-spring&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- bpmn 模型处理 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-bpmn-model&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- bpmn 转换 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-bpmn-converter&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- bpmn json数据转换 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-json-converter&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- bpmn 布局 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-bpmn-layout&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- activiti 云支持 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.activiti.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;activiti-cloud-services-api&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;activiti.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- mysql驱动 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;mysql&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">5.1</span><span class="number">.40</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- mybatis --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">3.4</span><span class="number">.5</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- 链接池 --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;commons-dbcp&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.4</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;junit&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;junit&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">4.12</span>&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;!-- log start --&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;log4j&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;log4j&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;log4j.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;slf4j.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;$&#123;slf4j.version&#125;&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<p>日志配置省略….</p>
+<ul>
+<li>添加activiti配置文件</li>
+</ul>
+<p>我们使用activiti提供的默认方式来创建mysql的表。</p>
+<p>默认方式的要求是在 resources 下创建 <code>activiti.cfg.xml</code> 文件，注意：默认方式目录和文件名不能修改，因为activiti的源码中已经设置，到固定的目录读取固定文件名的文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;beans xmlns=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="line">xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="line">xmlns:context=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="line">xmlns:tx=<span class="string">&quot;http://www.springframework.org/schema/tx&quot;</span></span><br><span class="line">xsi:schemaLocation=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span><br><span class="line"><span class="string">                    http://www.springframework.org/schema/beans/spring-beans.xsd</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/contex</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/tx</span></span><br><span class="line"><span class="string">http://www.springframework.org/schema/tx/spring-tx.xsd&quot;</span>&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<p>数据库省略…</p>
+<p>java编写代码生成表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.itheima.activiti01.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.activiti.engine.ProcessEngine;</span><br><span class="line"><span class="keyword">import</span> org.activiti.engine.ProcessEngineConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestDemo</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成 activiti的数据库表</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testCreateDbTable</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//使用classpath下的activiti.cfg.xml中的配置创建processEngine</span></span><br><span class="line">  <span class="type">ProcessEngine</span> <span class="variable">processEngine</span> <span class="operator">=</span> ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">  System.out.println(processEngine);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过改变 <code>activiti.cfg.xml</code> 中<code>databaseSchemaUpdate</code> 参数的值执行不同的数据表处理策略。</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/images/640.png"></p>
+<p>流程引擎配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">&quot;processEngineConfiguration&quot;</span></span><br><span class="line">          class=<span class="string">&quot;org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration&quot;</span>&gt;</span><br><span class="line">        &lt;!--配置数据库相关的信息--&gt;</span><br><span class="line">        &lt;!--数据库驱动--&gt;</span><br><span class="line">        &lt;property name=<span class="string">&quot;jdbcDriver&quot;</span> value=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>/&gt;</span><br><span class="line">        &lt;!--数据库链接--&gt;</span><br><span class="line">        &lt;property name=<span class="string">&quot;jdbcUrl&quot;</span> value=<span class="string">&quot;jdbc:mysql:///activiti&quot;</span>/&gt;</span><br><span class="line">        &lt;!--数据库用户名--&gt;</span><br><span class="line">        &lt;property name=<span class="string">&quot;jdbcUsername&quot;</span> value=<span class="string">&quot;root&quot;</span>/&gt;</span><br><span class="line">        &lt;!--数据库密码--&gt;</span><br><span class="line">        &lt;property name=<span class="string">&quot;jdbcPassword&quot;</span> value=<span class="string">&quot;123456&quot;</span>/&gt;</span><br><span class="line">        &lt;!--actviti数据库表在生成时的策略  <span class="literal">true</span> - 如果数据库中已经存在相应的表，那么直接使用，如果不存在，那么会创建--&gt;</span><br><span class="line">        &lt;property name=<span class="string">&quot;databaseSchemaUpdate&quot;</span> value=<span class="string">&quot;true&quot;</span>/&gt;</span><br><span class="line">    &lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>连接池省略…</p>
+<p>整合配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="line">   xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> xmlns:mvc=<span class="string">&quot;http://www.springframework.org/schema/mvc&quot;</span></span><br><span class="line">xmlns:context=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span><br><span class="line">   xmlns:aop=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span> xmlns:tx=<span class="string">&quot;http://www.springframework.org/schema/tx&quot;</span></span><br><span class="line">xsi:schemaLocation=<span class="string">&quot;http://www.springframework.org/schema/beans </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/beans/spring-beans-3.1.xsd </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/mvc </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/context </span></span><br><span class="line"><span class="string">       http://www.springframework.org/schema/context/spring-context-3.1.xsd </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/aop </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/aop/spring-aop-3.1.xsd </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/tx </span></span><br><span class="line"><span class="string">      http://www.springframework.org/schema/tx/spring-tx-3.1.xsd &quot;</span>&gt;</span><br><span class="line">   &lt;!-- 工作流引擎配置bean --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;processEngineConfiguration&quot;</span> class=<span class="string">&quot;org.activiti.spring.SpringProcessEngineConfiguration&quot;</span>&gt;</span><br><span class="line">      &lt;!-- 数据源 --&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;dataSource&quot;</span> ref=<span class="string">&quot;dataSource&quot;</span> /&gt;</span><br><span class="line">      &lt;!-- 使用spring事务管理器 --&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;transactionManager&quot;</span> ref=<span class="string">&quot;transactionManager&quot;</span> /&gt;</span><br><span class="line">      &lt;!-- 数据库策略 --&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;databaseSchemaUpdate&quot;</span> value=<span class="string">&quot;drop-create&quot;</span> /&gt;</span><br><span class="line">      &lt;!-- activiti的定时任务关闭 --&gt;</span><br><span class="line">     &lt;property name=<span class="string">&quot;jobExecutorActivate&quot;</span> value=<span class="string">&quot;false&quot;</span> /&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line">   &lt;!-- 流程引擎 --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;processEngine&quot;</span> class=<span class="string">&quot;org.activiti.spring.ProcessEngineFactoryBean&quot;</span>&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;processEngineConfiguration&quot;</span> ref=<span class="string">&quot;processEngineConfiguration&quot;</span> /&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line">   &lt;!-- 资源服务service --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;repositoryService&quot;</span> factory-bean=<span class="string">&quot;processEngine&quot;</span></span><br><span class="line">      factory-method=<span class="string">&quot;getRepositoryService&quot;</span> /&gt;</span><br><span class="line">   &lt;!-- 流程运行service --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;runtimeService&quot;</span> factory-bean=<span class="string">&quot;processEngine&quot;</span></span><br><span class="line">      factory-method=<span class="string">&quot;getRuntimeService&quot;</span> /&gt;</span><br><span class="line">   &lt;!-- 任务管理service --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;taskService&quot;</span> factory-bean=<span class="string">&quot;processEngine&quot;</span></span><br><span class="line">      factory-method=<span class="string">&quot;getTaskService&quot;</span> /&gt;</span><br><span class="line">   &lt;!-- 历史管理service --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;historyService&quot;</span> factory-bean=<span class="string">&quot;processEngine&quot;</span> factory-method=<span class="string">&quot;getHistoryService&quot;</span> /&gt;</span><br><span class="line">   &lt;!-- 用户管理service --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;identityService&quot;</span> factory-bean=<span class="string">&quot;processEngine&quot;</span> factory-method=<span class="string">&quot;getIdentityService&quot;</span> /&gt;</span><br><span class="line">   &lt;!-- 引擎管理service --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;managementService&quot;</span> factory-bean=<span class="string">&quot;processEngine&quot;</span> factory-method=<span class="string">&quot;getManagementService&quot;</span> /&gt;</span><br><span class="line">   &lt;!-- 数据源 --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;dataSource&quot;</span> class=<span class="string">&quot;org.apache.commons.dbcp.BasicDataSource&quot;</span>&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;driverClassName&quot;</span> value=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span> /&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;url&quot;</span> value=<span class="string">&quot;jdbc:mysql://localhost:3306/activiti&quot;</span> /&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;username&quot;</span> value=<span class="string">&quot;root&quot;</span> /&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;password&quot;</span> value=<span class="string">&quot;mysql&quot;</span> /&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;maxActive&quot;</span> value=<span class="string">&quot;3&quot;</span> /&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;maxIdle&quot;</span> value=<span class="string">&quot;1&quot;</span> /&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line">   &lt;!-- 事务管理器 --&gt;</span><br><span class="line">   &lt;bean id=<span class="string">&quot;transactionManager&quot;</span></span><br><span class="line">    class=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br><span class="line">      &lt;property name=<span class="string">&quot;dataSource&quot;</span> ref=<span class="string">&quot;dataSource&quot;</span> /&gt;</span><br><span class="line">   &lt;/bean&gt;</span><br><span class="line">   &lt;!-- 通知 --&gt;</span><br><span class="line">   &lt;tx:advice id=<span class="string">&quot;txAdvice&quot;</span> transaction-manager=<span class="string">&quot;transactionManager&quot;</span>&gt;</span><br><span class="line">      &lt;tx:attributes&gt;&lt;/tx:attributes&gt;</span><br><span class="line">          &lt;!-- 传播行为 --&gt;</span><br><span class="line">          &lt;tx:method name=<span class="string">&quot;save*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">          &lt;tx:method name=<span class="string">&quot;insert*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">          &lt;tx:method name=<span class="string">&quot;delete*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">          &lt;tx:method name=<span class="string">&quot;update*&quot;</span> propagation=<span class="string">&quot;REQUIRED&quot;</span> /&gt;</span><br><span class="line">          &lt;tx:method name=<span class="string">&quot;find*&quot;</span> propagation=<span class="string">&quot;SUPPORTS&quot;</span> read-only=<span class="string">&quot;true&quot;</span> /&gt;</span><br><span class="line">          &lt;tx:method name=<span class="string">&quot;get*&quot;</span> propagation=<span class="string">&quot;SUPPORTS&quot;</span> read-only=<span class="string">&quot;true&quot;</span> /&gt;</span><br><span class="line">       &lt;/tx:attributes&gt;</span><br><span class="line">   &lt;/tx:advice&gt;</span><br><span class="line">   &lt;!-- 切面，根据具体项目修改切点配置 --&gt;</span><br><span class="line">   &lt;aop:config proxy-target-class=<span class="string">&quot;true&quot;</span>&gt;</span><br><span class="line">      &lt;aop:advisor advice-ref=<span class="string">&quot;txAdvice&quot;</span>  pointcut=<span class="string">&quot;execution(* com.itheima.ihrm.service.impl.*.(..))&quot;</span>* /&gt;</span><br><span class="line">  &lt;/aop:config&gt;</span><br><span class="line">&lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+
+<p>创建</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ProcessEngineConfiguration</span> <span class="variable">configuration</span> <span class="operator">=</span> ProcessEngineConfiguration.createProcessEngineConfigurationFromResource(<span class="string">&quot;activiti.cfg.xml&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>自定义就不说了，</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://example.com">even</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://example.com/2022/06/14/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">http://example.com/2022/06/14/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="../../../../tags/%E5%90%8E%E7%AB%AF/">后端</a>
+            
+              <a href="../../../../tags/%E5%BC%95%E6%93%8E/">引擎</a>
+            
+              <a href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96/">自动化</a>
+            
+              <a href="../../../../tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/">工作流</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="../../13/%E5%8A%A8%E6%80%81%E6%94%AF%E4%BB%98%E7%A0%81totp%E5%8F%8Aluhn%E7%AE%97%E6%B3%95/">
+        <span class="next-text nav-default">支付动态码，TOTP算法及luhn算法</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:2250377639@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/evenff" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      
+      <a href="../../../../atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2015 - 
+    
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">even</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="../../../../lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="../../../../lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="../../../../lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="../../../../lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="../../../../lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="../../../../js/src/even.js?v=2.9.0"></script>
+
+  </body>
+</html>
