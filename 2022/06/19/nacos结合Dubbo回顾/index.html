@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Nacos结合dubbo的使用"/>
+
+
+
+
+  <meta name="keywords" content="后端, Enen" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Enen" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="https://fengqisheng.cn/2022/06/19/nacos结合Dubbo回顾/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.9.0" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6f5ca945276d7d2f5e5618b24909a515";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"since":2022,"favicon":"/favicon.ico","footer":null,"counter":true,"menu":{"主页":"/","归档":"/archives/","标签":"/tags","分类":"/categories","关于":"/about"},"theme":{"color":"Cobalt Blue"},"toc":true,"languages":"en_US","fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"CC BY-NC-SA 3.0","license_url":"https://creativecommons.org/licenses/by-nc-sa/3.0/"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"cursor_effect":{"enabled":true,"type":"cherry"},"social":{"email":"2250377639@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/evenff","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":null,"enable":true,"app_id":"VD1Yyn63Jw03Fo3HTECjPyBz-gzGzoHsz","app_key":"G9A2LTwQsuSb5MWnnNiaWTN9","security":false,"betterPerformance":false,"baidu_analytics":"6f5ca945276d7d2f5e5618b24909a515","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"passage_end_tag":{"enabled":true},"post_wordcount":{"item_text":true,"wordcount":true,"min2read":true,"totalcount":true,"separated_meta":true},"livere_datauid":"MTAyMC81NjYzMC8zMzA5Mw","version":"2.9.0"};
+</script>
+
+    <title> Nacos结合dubbo的使用 - Enen </title>
+  <meta name="generator" content="Hexo 6.1.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Enen</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            主页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/categories">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Enen</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              主页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Nacos结合dubbo的使用
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-06-19
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/JavaScript/">JavaScript</a>
+            
+              <a href="/categories/JavaScript/%E5%90%8E%E7%AB%AF/">后端</a>
+            
+          </div>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <p>生产环境布置nacos及dubbo</p>
+<span id="more"></span>
+
+<p>Nacos，阿里巴巴提供的构建云本地应用的动态服务发现、配置中心和服务管理平台</p>
+<p>可以查看<a target="_blank" rel="noopener" href="https://nacos.io/en-us/">Nacos官方文档</a></p>
+<ol>
+<li><p>特性</p>
+<p>服务发现和管理</p>
+<p>动态服务发现是以服务为中心体系结构的关键。</p>
+<p>动态配置服务</p>
+<p>动态配置服务，外部化和动态的管理所有环境中的配置</p>
+<p>动态DNS</p>
+<p>支持加权路由，动态DNS服务在数据中心内的生产环境中间层负载均衡，灵活路由，流量控制、解析DNS服务，实现基于DNS的服务发现，最大程度降低耦合到特定于公司项目服务发现APi的风险</p>
+</li>
+</ol>
+<p>生产等级</p>
+<ol>
+<li>阿里巴巴开源</li>
+<li>支持数百万种服务的大规模方案</li>
+<li>具有企业级SLA（服务级别协议）的开源产品</li>
+</ol>
+<p>Nacos架构图</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/yunjiagou1.png" alt="架构图"></p>
+<p>核心概念</p>
+<ol>
+<li><p>&#x3D;&#x3D;服务&#x3D;&#x3D;</p>
+<p> 特定信息的检索或一组操作的执行，其目的是不同的客户端可以为不同的目的重用，支持主流服务生态，K8s、RPC、spring cloud RESTful</p>
+</li>
+<li><p>&#x3D;&#x3D;服务注册中心&#x3D;&#x3D;</p>
+<p> 服务实例及元数据的数据库，服务实例在启动时注册到服务注册表，在关闭的时候注销，服务和路由器的客户端查询服务注册表以查找服务的可用实例。服务注册中心可能会调用服务实例的健康检查API来验证它是否能够处理请求、</p>
+<blockquote>
+<p>*<em><strong>服务元数据 (Service Metadata)*</strong></em></p>
+<p>服务元数据是指包括服务端点(endpoints)、服务标签、服务版本号、服务实例权重、路由规则、安全策略等描述服务的数据</p>
+<p>** 服务提供方 (Service Provider)**</p>
+<p>是指提供可复用和可调用服务的应用方</p>
+<p><strong>服务消费方 (Service Consumer)</strong></p>
+<p>是指会发起对某个服务调用的应用方</p>
+<p>配置及配置管理省略…</p>
+<p><strong>名字服务 (Naming Service)</strong></p>
+<p>提供分布式系统中所有对象(Object)、实体(Entity)的“名字”到关联的元数据之间的映射管理服务，例如 ServiceName -&gt; Endpoints Info, Distributed Lock Name -&gt; Lock Owner&#x2F;Status Info, DNS Domain Name -&gt; IP List, 服务发现和 DNS 就是名字服务的2大场景。</p>
+<p>** <strong>配置服务 (Configuration Service)</strong></p>
+<p>在服务或者应用运行过程中，提供动态配置或者元数据以及配置管理的服务提供者。</p>
+</blockquote>
+</li>
+</ol>
+<p>使用及部署</p>
+<p>基于Docker安装Nacos</p>
+<ol>
+<li><p>拉取镜像</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nacos/nacos-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建目录及配置文件</p>
+<p>创建两个目录，分别是初始化目录和日志目录</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p/opt/nacos/init.d/opt/nacos/logs</span><br></pre></td></tr></table></figure>
+
+<p>新建配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/nacos/init.d/custom.properties</span><br></pre></td></tr></table></figure>
+
+<p>在文件中添加内容</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">management.endpoints.web.exposure.include=*</span><br></pre></td></tr></table></figure>
+
+<p>创建并启动容器（默认端口8848）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">省略： Mode= stangdalone（单机版）</span><br></pre></td></tr></table></figure>
+
+<p>挂载配置文件和日志文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--restart always 自启动容器</span><br></pre></td></tr></table></figure>
+
+<p>使用MySQL数据库，配置—e变量</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%871.png"></p>
+<p>配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">单机为例：</span><br><span class="line">docker run -d -p <span class="number">8848</span>:<span class="number">8848</span> -p <span class="number">9848</span>:<span class="number">9848</span> -e MODE=standalone -e PREFER_HOST_MODE=hostname -v /opt/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties -v /opt/nacos/logs:/home/nacos/logs --restart always  --name nacos nacos/nacos-server</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意： Nacos服务器的版本如果是2.0.x。需要额外绑定端口 9849。否则无法实现服务的注册与发现。因为nacos服务器版本是2.0.x时，要求服务注册时，检查gRPC端口，此端口为9848，且端口无法访问时，服务启动抛出异常，因为nacos-discovery连接nacos-server的时候，gRPC端口无法访问，认为当前服务注册失败。</p>
+</blockquote>
+</li>
+</ol>
+<p>启动Nacos，访问可视化页面</p>
+<p>访问：<a target="_blank" rel="noopener" href="http://ip:8848/nacos">http://ip:8848/nacos</a></p>
+<p>默认账号密码为nacos</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%872.png"></p>
+<p>使用Nacos做注册中心注意</p>
+<blockquote>
+<p>Nacos支持HTTP和RPC协议访问。在导入Nacos依赖后内置Ribbon。和Eureka相同，都支持同名应用程序的负载均衡。</p>
+<p>所以在使用Nacos作为注册中心的时候除了和Eureka依赖及配置文件不一样，其他流程都是一样的。</p>
+<p>注意：Spring Cloud Alibaba依赖的Spring Boot最高版本只能是2.3.x。更高版本的spring boot和 spring cloud alibaba有兼容错误。启动失败。</p>
+<p>注意：spring cloud alibaba 2021版本依赖，在使用openfeign技术做远程服务调用的时候，需要spring boot2.4.2及更高版本中的loadbalancer支持。但是启动的时候，必须使用spring boot 2.3.x版本中的spring-boot-context才能启动。有依赖冲突。无法实现服务的正常发现。暂时使用spring cloud alibaba2.2.x版本可以正常基于openfeign实现远程服务调用。</p>
+</blockquote>
+<p>导入项目pom依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2.3</span><span class="number">.12</span>.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;Hoxton.SR12&lt;/version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">            &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.2</span><span class="number">.7</span>.RELEASE&lt;/version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">            &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<p>父项目下新建Provider，配置依赖</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<p>编写配置文件</p>
+<p>新建APPlocation.yml</p>
+<p>server-addr:配置nacos的ip和端口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: <span class="number">8080</span></span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: provider</span><br><span class="line">  cloud:</span><br><span class="line">    nacos:</span><br><span class="line">      discovery:</span><br><span class="line">        server-addr: ip:<span class="number">8848</span></span><br></pre></td></tr></table></figure>
+
+<p>新建控制器</p>
+<p>新建com.dffy.controller.ProviderController</p>
+<p>该控制器是为了让另一个项目调用的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProviderController</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/provider&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">provider</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;provider-controller&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建启动类</p>
+<p>新建com.dffy.ProviderApplication</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProviderApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ProviderApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动项目</p>
+<p>启动项目中可以在Nacos控制台中发现注册的信息</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%873.png"></p>
+<p>新建Consumer项目</p>
+<p>在父项目下新建及配置依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建配置文件</p>
+<p>在resources下新建application.yml</p>
+<p>端口和应用程序名不可重复</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: <span class="number">8081</span></span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    name: consumer</span><br><span class="line">  cloud:</span><br><span class="line">    nacos:</span><br><span class="line">      discovery:</span><br><span class="line">        server-addr: ip:<span class="number">8848</span></span><br></pre></td></tr></table></figure>
+
+<p>新建配置类</p>
+<p>新建com.dffy.config.ConsumerConfig</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建service及实现类</p>
+<p><a target="_blank" rel="noopener" href="http://provider/provider">http://provider/provider</a> 中第一个provider是另一个项目的应用程序名。第二个provider是控制器名称。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ConsumerService</span> &#123;</span><br><span class="line">    String <span class="title function_">consumer</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">ConsumerService</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">consumer</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> restTemplate.getForObject(<span class="string">&quot;http://provider/provider&quot;</span>, String.class);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建控制器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ConsumerService consumerService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/consumer&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">consumer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> consumerService.consumer();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建启动类ConsumerApplication</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ConsumerApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行项目，是否成功注册</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%874.png"></p>
+<p>测试服务调用</p>
+<p>浏览器输入ip：8081&#x2F;consumer</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%875.png"></p>
+<p>使用Nacos作为Dubbo的注册中心</p>
+<p>新建父项目</p>
+<p>配置pom依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2.3</span><span class="number">.5</span>.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line">    &lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;Hoxton.SR9&lt;/version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">            &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.2</span><span class="number">.3</span>.RELEASE&lt;/version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">            &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.3</span><span class="number">.5</span>.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.2</span><span class="number">.3</span>.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-dubbo&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.2</span><span class="number">.3</span>.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建API子项目</p>
+<p>新建项目api.</p>
+<p>此项目作为Dubbo发布接口的项目</p>
+<p>新建接口</p>
+<p>新建.api.DemoApiService（不能和Consumer的service接口名重复）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DemoApiService</span> &#123;</span><br><span class="line">    String <span class="title function_">demo</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建Provider子项目</p>
+<p>配置pom依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;artifactId&gt;api&lt;/artifactId&gt;</span><br><span class="line">        &lt;groupId&gt;com.bjsxt&lt;/groupId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.0</span>-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-dubbo&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建配置文件</p>
+<p>新建application.yml</p>
+<p>dubbo.scan.backages：扫描@DubboService所在包</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">dubbo:</span><br><span class="line">#  scan:</span><br><span class="line">#    base-packages: com.flysoft.service.impl</span><br><span class="line">#  cloud:</span><br><span class="line">#    subscribed-services: dubbo-provider # 订阅的服务，默认 *</span><br><span class="line">protocol:</span><br><span class="line">    # dubbo 协议</span><br><span class="line">      name: dubbo</span><br><span class="line">    # dubbo 协议端口（ -<span class="number">1</span> 表示自增端口，从 <span class="number">20880</span> 开始）</span><br><span class="line">      port: -<span class="number">1</span></span><br><span class="line">  registry:</span><br><span class="line">    # 挂载到注册中心</span><br><span class="line">    address: nacos:<span class="comment">//ip:8848</span></span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    # Dubbo 应用名称</span><br><span class="line">    name: dubbo-provider</span><br><span class="line">#  main:</span><br><span class="line">    # Spring Boot <span class="number">2.1</span> 需要设定</span><br><span class="line">#    allow-bean-definition-overriding: <span class="literal">true</span></span><br><span class="line">  cloud:</span><br><span class="line">    nacos:</span><br><span class="line">      # Nacos 服务发现与注册配置</span><br><span class="line">      discovery:</span><br><span class="line">        server-addr: ip:<span class="number">8848</span></span><br></pre></td></tr></table></figure>
+
+<p>新建实现类</p>
+<p>service.impl.DemoServiceImpl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@DubboService</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">DemoApiService</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">demo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;dubbo-provider-service&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建启动类</p>
+<p>.ProviderApplication</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@EnableDubbo</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ProviderApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ProviderApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建Consumer项目</p>
+<p>配置pom依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;artifactId&gt;api&lt;/artifactId&gt;</span><br><span class="line">        &lt;groupId&gt;com.bjsxt&lt;/groupId&gt;</span><br><span class="line">        &lt;version&gt;<span class="number">1.0</span>-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-dubbo&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<p>新建配置文件application.yml</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">dubbo:</span><br><span class="line">  registry:</span><br><span class="line">    # 挂载到 Spring Cloud 注册中心</span><br><span class="line">    address: nacos:<span class="comment">//ip:8848</span></span><br><span class="line">#  cloud:</span><br><span class="line">#    subscribed-services: dubbo-provider</span><br><span class="line">  protocol:</span><br><span class="line">    # dubbo 协议</span><br><span class="line">    name: dubbo</span><br><span class="line">    # dubbo 协议端口（ -<span class="number">1</span> 表示自增端口，从 <span class="number">20880</span> 开始）</span><br><span class="line">    port: -<span class="number">1</span></span><br><span class="line">server:</span><br><span class="line">  port: <span class="number">8081</span></span><br><span class="line">spring:</span><br><span class="line">  application:</span><br><span class="line">    # Dubbo 应用名称</span><br><span class="line">    name: dubbo-consumer</span><br><span class="line">#  main:</span><br><span class="line">    # Spring Boot <span class="number">2.1</span> 需要设定</span><br><span class="line">#    allow-bean-definition-overriding: <span class="literal">true</span></span><br><span class="line">  cloud:</span><br><span class="line">    nacos:</span><br><span class="line">      # Nacos 服务发现与注册配置</span><br><span class="line">      discovery:</span><br><span class="line">        server-addr: ip:<span class="number">8848</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>新建service及实现类</p>
+<p>service.ConsumerService</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ConsumerService</span> &#123;</span><br><span class="line">    String <span class="title function_">consumer</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">ConsumerService</span> &#123;</span><br><span class="line">    <span class="meta">@DubboReference</span></span><br><span class="line">    <span class="keyword">private</span> DemoApiService demoApiService;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">consumer</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> demoApiService.demo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建控制器</p>
+<p>.controller.ConsumerController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ConsumerService consumerService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/consumer&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">consumer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> consumerService.consumer();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建启动类</p>
+<p>.ConsumerApplication</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ConsumerApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>基于OpenFeign实现远程服务调用</p>
+<p>修改pom</p>
+<p>增加依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>定义OpenFeign调用接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(&quot;dubbo-provider&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">CallProviderInterface</span> &#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/provider&quot;)</span></span><br><span class="line">    String <span class="title function_">test</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改控制器</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ConsumerService consumerService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> CallProviderInterface callProviderInterface;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/consumer2&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">consumer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> callProviderInterface.test();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/consumer&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">consumer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> consumerService.consumer();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改启动类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConsumerApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ConsumerApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%876.png"></p>
+<p>实现Nacos作为配置中心</p>
+<p>在Nacos中新建配置文件</p>
+<p>访问可视化</p>
+<p>配置列表点击+</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%877.png"></p>
+<p>添加配置文件信息</p>
+<p>Data ID：名称任意。此名称作为配置文件名称（又可以叫前缀(prefix)）</p>
+<p>Group: 在没有自己建立组时默认为DEFAUL_GROUP。此值不需要修改</p>
+<p>配置格式：选择properties或yml。此配置影响到客户端加载配置文件时配置。</p>
+<p>配置内容：根据所选配置格式，按照指定格式填写内容。</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%878.png"></p>
+<p>点击发布按钮后弹出配置文件信息</p>
+<p>点击确定按钮不会自动关闭这个页面。而是回到编辑视图</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%879.png"></p>
+<p>在配置列表中查看</p>
+<p><img src="https://hexo-evenff.oss-cn-hangzhou.aliyuncs.com/Nacos/%E5%9B%BE%E7%89%8710.png"></p>
+<p>新建项目</p>
+<p>任意名称的项目</p>
+<p>编写pom</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2.3</span><span class="number">.5</span>.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.3</span><span class="number">.5</span>.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-config&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;<span class="number">2.2</span><span class="number">.3</span>.RELEASE&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">    &lt;dependencyManagement&gt;</span><br><span class="line">        &lt;dependencies&gt;</span><br><span class="line">&lt;!--            &lt;dependency&gt;--&gt;</span><br><span class="line">&lt;!--                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;--&gt;</span><br><span class="line">&lt;!--                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;--&gt;</span><br><span class="line">&lt;!--                &lt;version&gt;Hoxton.SR8&lt;/version&gt;--&gt;</span><br><span class="line">&lt;!--                &lt;type&gt;pom&lt;/type&gt;--&gt;</span><br><span class="line">&lt;!--                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;--&gt;</span><br><span class="line">&lt;!--            &lt;/dependency&gt;--&gt;</span><br><span class="line">            &lt;dependency&gt;</span><br><span class="line">                &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;<span class="number">2.2</span><span class="number">.3</span>.RELEASE&lt;/version&gt;</span><br><span class="line">                &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">                &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">            &lt;/dependency&gt;</span><br><span class="line">        &lt;/dependencies&gt;</span><br><span class="line">    &lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+
+<p>编写配置文件</p>
+<p>新建配置文件</p>
+<p>新建bootstarap.yml</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">server:</span><br><span class="line">  port: <span class="number">8070</span></span><br><span class="line">spring:</span><br><span class="line">  cloud:</span><br><span class="line">    nacos:</span><br><span class="line">      discovery:</span><br><span class="line">        server-addr: ip:<span class="number">8848</span></span><br><span class="line">      config: # 指定配置中心的地址和配置中心使用的数据格式</span><br><span class="line">        server-addr: ip:<span class="number">8848</span></span><br><span class="line">        # 默认加载文件扩展名为properties</span><br><span class="line">        file-extension: properties</span><br><span class="line">        # group默认值为DEFAULT_GROUP</span><br><span class="line">#        group: DEFAULT_GROUP</span><br><span class="line">        # 加载的配置文件名称默认值为应用程序名</span><br><span class="line"></span><br><span class="line">  #        prefix: $&#123;spring.application.name&#125;</span><br><span class="line">  application:</span><br><span class="line">    name: config-client</span><br></pre></td></tr></table></figure>
+
+<p>新建service及实现类</p>
+<p>.service.ConfigClientService及实现类</p>
+<p>Nacos支持动态刷新功能。在获取分布式配置中心内容的类上添加@RefreshScope可以热刷新</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ConfigClientService</span> &#123;</span><br><span class="line">    String <span class="title function_">configClient</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@RefreshScope</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigClientServiceImpl</span> <span class="keyword">implements</span> <span class="title class_">ConfigClientService</span> &#123;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;my.name&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;my.age&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">configClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> name+<span class="string">&quot;---&quot;</span>+age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建控制器</p>
+<p>.controller.ConfigServerController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigServerController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ConfigClientService configClientService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">configServer</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> configClientService.configClient();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>新建启动类</p>
+<p>.ConfigClientApplication</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigClientApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ConfigClientApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试</p>
+
+      
+    </div>
+    
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fengqisheng.cn">fengqisheng</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fengqisheng.cn/2022/06/19/nacos%E7%BB%93%E5%90%88Dubbo%E5%9B%9E%E9%A1%BE/">https://fengqisheng.cn/2022/06/19/nacos%E7%BB%93%E5%90%88Dubbo%E5%9B%9E%E9%A1%BE/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      CC BY-NC-SA 3.0
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+  
+</div>
+
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/%E5%90%8E%E7%AB%AF/">后端</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2022/07/15/HTTP4-0/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">HTTP3.0</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2022/06/14/%E5%B7%A5%E4%BD%9C%E6%B5%81Activiti/">
+        <span class="next-text nav-default">工作流引擎Activi回顾</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81NjYzMC8zMzA5Mw">
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>  
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:2250377639@qq.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/evenff" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+   <!--
+   <span class="power-by">
+    由 <a class="hexo-link" target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" target="_blank" rel="noopener" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+	 -->
+    2022
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">fengqisheng</span>
+  </span>
+ 
+  <!--
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">post.totalcount&#58;</span>
+    
+    <span title="post.totalcount">18.5k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+-->
+
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+   <script type="text/javascript">
+	(function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+  </script>
+
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script>
+
+ 
+    
+    <script src="/js/cursor/cherry.js"></script>
+  
+  </body>
+</html>

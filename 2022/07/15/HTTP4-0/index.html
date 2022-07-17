@@ -17,10 +17,12 @@
 
 
 
-  <meta name="description" content="about"/>
+  <meta name="description" content="HTTP3.0"/>
 
 
 
+
+  <meta name="keywords" content="前端, Enen" />
 
 
 
@@ -40,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://fengqisheng.cn/about/"/>
+<link rel="canonical" href="https://fengqisheng.cn/2022/07/15/HTTP4-0/"/>
 
 
 
@@ -97,7 +99,7 @@
   window.config = {"since":2022,"favicon":"/favicon.ico","footer":null,"counter":true,"menu":{"主页":"/","归档":"/archives/","标签":"/tags","分类":"/categories","关于":"/about"},"theme":{"color":"Cobalt Blue"},"toc":true,"languages":"en_US","fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"CC BY-NC-SA 3.0","license_url":"https://creativecommons.org/licenses/by-nc-sa/3.0/"},"reward":{"enable":false,"qrCode":{"wechat":null,"alipay":null}},"cursor_effect":{"enabled":true,"type":"cherry"},"social":{"email":"2250377639@qq.com","stack-overflow":null,"twitter":null,"facebook":null,"linkedin":null,"google":null,"github":"https://github.com/evenff","weibo":null,"zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":null,"enable":true,"app_id":"VD1Yyn63Jw03Fo3HTECjPyBz-gzGzoHsz","app_key":"G9A2LTwQsuSb5MWnnNiaWTN9","security":false,"betterPerformance":false,"baidu_analytics":"6f5ca945276d7d2f5e5618b24909a515","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":null,"changyan":{"appid":null,"appkey":null},"passage_end_tag":{"enabled":true},"post_wordcount":{"item_text":true,"wordcount":true,"min2read":true,"totalcount":true,"separated_meta":true},"livere_datauid":"MTAyMC81NjYzMC8zMzA5Mw","version":"2.9.0"};
 </script>
 
-    <title> about - Enen </title>
+    <title> HTTP3.0 - Enen </title>
   <meta name="generator" content="Hexo 6.1.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -226,15 +228,148 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
+  
   <article class="post">
-    <div class="post-content">
-      <p><strong>你好，我叫冯启胜，成为技术专家的路…..</strong></p>
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          HTTP3.0
+        
+      </h1>
 
+      <div class="post-meta">
+        <span class="post-time">
+          2022-07-15
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+
+    <div class="post-content">
+      
+        <p>HTTP3.0介绍</p>
+<span id="more"></span>
+
+<ul>
+<li>TCP队头阻塞<ul>
+<li>tcp传输过程，数据拆分为一个个顺序排列的数据包，通过网络到达接收端，接收端按照顺序将数据包组合成原始数据，完成数据传输。</li>
+<li>如果其中一个拆分的数据包没有到达，接收端会一直保持连接等待数据包返回，会阻塞请求，就发生tcp队头阻塞</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>tcp握手时长</p>
+<ul>
+<li>tcp可靠连接基于三次握手，四次挥手，消耗时间。</li>
+</ul>
+</li>
+<li><p>QUIC</p>
+<ul>
+<li>HTTP3.0放弃tcp</li>
+<li>实现QIUC协议（UDP+迪菲赫尔曼算法）</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>基于UDP的传输层协议：使用UDP端口号来识别指定机器上的特定服务器</li>
+<li>可靠性：UDP为不可靠传输协议，QIUC在基础上进行改造，使之提供了和TCP类似的可靠性。它提供了数据包重传，拥塞控制、调整传输节奏以及其他一些TCP中存在的特性。</li>
+<li>实现了无序、并发字节流：QUIC的单个数据流可以保证有序交付，但多个数据流之间可能乱序，这意味着单个数据流的传输是有序的，多个数据流中接收方收到的可能与发送方发送顺序不同</li>
+<li>快速握手：QUIC提供了0-RTT和1-RTT的链接建立</li>
+<li>TLS 1.3 传输层安全协议： 握手所花费的往返次数更低，从而能降低协议的延迟</li>
+</ul>
+</li>
+<li><p>阻碍</p>
+<ul>
+<li>基于UDP的QUIC协议的传输可能会受到屏蔽</li>
+<li>中间设备对于UDP的技术支持和优化不高，可能会出现丢包</li>
+</ul>
+</li>
+</ul>
+
+      
     </div>
+    
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fengqisheng.cn">fengqisheng</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fengqisheng.cn/2022/07/15/HTTP4-0/">https://fengqisheng.cn/2022/07/15/HTTP4-0/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      CC BY-NC-SA 3.0
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+  
+  
+</div>
+
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2022/06/19/nacos%E7%BB%93%E5%90%88Dubbo%E5%9B%9E%E9%A1%BE/">
+        <span class="next-text nav-default">Nacos结合dubbo的使用</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
   </article>
+
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC81NjYzMC8zMzA5Mw">
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>  
+    
+  </div>
+
 
         </div>
       </main>
